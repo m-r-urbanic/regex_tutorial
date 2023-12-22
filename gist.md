@@ -4,7 +4,7 @@ Introductory paragraph (replace this with your text)
 
 ## Summary
 
-I will be describing the functionality of the regex used to compare matching emails.
+I will be describing the functionality of the following regex used to compare matching emails. This regex defines the characters that can be used within each part of an email addess (username)@(subdomain).(top level domain). There are different options for each section.
 
 `/^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/`
 
@@ -15,8 +15,6 @@ I will be describing the functionality of the regex used to compare matching ema
 - [Grouping Constructs](#grouping-constructs)
 - [Bracket Expressions](#bracket-expressions)
 - [Character Classes](#character-classes)
-- [The OR Operator](#the-or-operator)
-- [Flags](#flags)
 - [Character Escapes](#character-escapes)
 
 ## Regex Components
@@ -25,9 +23,9 @@ Regex has many components, that are all wrapped between "/" characters.
 
 ### Anchors
 
-There are two anchor characters, ^ and $. The ^ eaither indicates a specific word, or a range of characters that are displayed between brackets. The $ indicates the characters that the expression ends with, which can be a range or a specific string.
+There are two anchor characters, `^` and `$`. The `^` eaither indicates a specific word, or a range of characters that are displayed between brackets. The `$` indicates the characters that the expression ends with, which can be a range or a specific string.
 
-Both are present in the 'compare matching emails' regex, it starts with a ^ and ends with a $.
+Both are present in the 'compare matching emails' regex, it starts with a `^` and ends with a `$`.
 
 In the regex, the patterns being searched for are `[a-z0-9_\.-]`, `[\da-z\.-]`, and `[a-z\.]`. These are all ranges within brackets.
 
@@ -47,12 +45,12 @@ Parentheses are used to group constructs into sections also called 'subexpressio
 
 There are three subexpressions in the 'compare matching emails' regex.
 
-`([a-z0-9_\.-]+)` looks for at least one instance of characters that are either between a-z, 0-9, or _. `dog`, `dog123`, and `ilikedogs123_` are all valid combinations.
+`([a-z0-9_\.-]+)` looks for at least one instance of characters that are either between a-z, 0-9, `.`, `-`, or `_`. `dog`, `dog.123`, and `ilike-dogs123_` are all valid combinations.
 
 
-`([\da-z\.-]+)` looks for at least one instance of characters that are between a-z. `yahoo`, `gmail`, and `google` are all valid combinations.
+`([\da-z\.-]+)` looks for at least one instance of characters that are between a-z (defined explicetly) or 0-9 (defined by `\d`), `.` or `-`. `yahoo`, `gmail`, and `google` are all valid combinations.
  
-`([a-z\.]{2,6})` looks for at least one instance of characters that are between a-z, the number of characters has to be between 2 and 6. `com`, `net` and `eu` are all valid combinations.
+`([a-z\.]{2,6})` looks for at least one instance of characters that are between a-z or a `.`, the number of characters has to be between 2 and 6. `com`, `net` and `eu` are all valid combinations.
 
 ### Bracket Expressions
 
@@ -68,14 +66,20 @@ In the 'compare matching emails' regex, the ranges `a-z`, `0-9` and `a-z0-9_` ar
 
 ### Character Classes
 
+Character classes are sets of characters that can be used to define additional character groups outside of the ranges.
 
+The character classes used in this regex are `\d`.
 
-### The OR Operator
-
-### Flags
+`[\da-z\.-]` uses `\d` which means that any numeric character between 0-9 is a match.
 
 ### Character Escapes
 
+A character escape is a `\` before another character, which tells regex to not take that character literaly.
+
+In this regex, the character `.` is escaped, which means that it is refering to the `.` character in all expressions, instead of the character class of `.` which means that all characters other than `\n` are a match.
+
 ## Author
 
-A short section about the author with a link to the author's GitHub profile (replace with your information and a link to your profile)
+Madeline is a student at the University of Richmond coding bootcamp, with a passion for database design and a desire to learn.
+
+https://github.com/m-r-urbanic
