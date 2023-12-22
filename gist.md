@@ -37,9 +37,9 @@ Quantifiers define the limits on what a regex matches.
 
 The quantifiers in the 'matching an email' regex are `{n,x}` and `+`.
 
-`{2,6}` in the regex means that the length of the third section `([a-z\.]{2,6})` should be between two and six characters. It can not be greater than or less than that particular range.
+`{2,6}` in the regex means that the length of the third section `([a-z\.]{2,6})` should be between two and six characters. It can not be greater than or less than that particular range. An example of this would be `dog`, `car` or `cheese`.
 
-`+` is used in two different locations in the regex, `([a-z0-9_\.-]+)` and `([\da-z\.-]+)`. This means that, for both sections, there must be a match within the provided ranges one or more times. 
+`+` is used in two different locations in the regex, `([a-z0-9_\.-]+)` and `([\da-z\.-]+)`. This means that, for both sections, there must be a match within the provided ranges one or more times. That means that `abcdef` or `aaaaaaa` are both valid options.
 
 ### Grouping Constructs
 
@@ -60,11 +60,11 @@ A 'bracket expression' refers to the range of characters within two square brack
 
 In the 'matching an email' regex, the ranges `a-z`, `0-9` and `a-z0-9_` are used. These are all lowercase, which means that only lowercase characters are being searched for.
 
-`a-z` means that any lowercase letter in the alphabet between a and z is a valid input. 
+`a-z` means that any lowercase letter in the alphabet between a and z is a valid input. `a`,`aaaa` or `abcdef` are all options.
 
-`0-9` means that any numeric character between 0 and 9 is a valid input.
+`0-9` means that any numeric character between 0 and 9 is a valid input. `123` or `444456` are both inputs.
 
-`a-z0-9_` means that any lowercase letter between a and z, any numeric character between 0 and 9, and the special character _ are all valid inputs.
+`a-z0-9_\.-` means that any lowercase letter between a and z, any numeric character between 0 and 9, and the special characters _, . or - are all valid inputs. `aaaaa`, `99999`, and `12-34.cats` all meet the requirements.
 
 ### Character Classes
 
@@ -72,13 +72,13 @@ Character classes are sets of characters that can be used to define additional c
 
 The character classes used in this regex are `\d`.
 
-`[\da-z\.-]` uses `\d` which means that any numeric character between 0-9 is a match.
+`[\da-z\.-]` uses `\d` which means that any numeric character between 0-9 is a match. This means that `123abc` and `abccccc` are both matches.
 
 ### Character Escapes
 
 A character escape is a `\` before another character, which tells regex to not take that character literaly.
 
-In this regex, the character `.` is escaped, which means that it is refering to the `.` character in all expressions, instead of the character class of `.` which means that all characters other than `\n` are a match.
+In this regex, the character `.` is escaped in `([a-z0-9_\.-]+)` and `([\da-z\.-]+)`, which means that it is refering to the `.` character in all expressions, instead of the character class of `.` which means that all characters other than `\n` are a match. This means that `catsarefun` and `i.like.dogs` are both matches.
 
 ## Author
 
