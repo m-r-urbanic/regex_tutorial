@@ -33,7 +33,13 @@ In the regex, the patterns being searched for are `[a-z0-9_\.-]`, `[\da-z\.-]`, 
 
 ### Quantifiers
 
+Quantifiers define the limits on what a regex matches.
 
+The quantifiers in the 'compare matching emails' regex are `{n,x}` and `+`.
+
+`{2,6}` in the regex means that the length of the third section (`[a-z\.]`) should be between two and six characters. It can not be greater than or less than that particular range.
+
+`+` is used in two different locations in the regex, `([a-z0-9_\.-]+)` and `([\da-z\.-]+)`. This means that, for both sections, there must be a match within the provided ranges one or more times. 
 
 ### Grouping Constructs
 
@@ -50,6 +56,8 @@ In the 'compare matching emails' regex, the ranges `a-z`, `0-9` and `a-z0-9_` ar
 `a-z0-9_` means that any lowercase letter between a and z, any numeric character between 0 and 9, and the special character _ are all valid inputs.
 
 ### Character Classes
+
+
 
 ### The OR Operator
 
