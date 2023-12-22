@@ -37,11 +37,22 @@ Quantifiers define the limits on what a regex matches.
 
 The quantifiers in the 'compare matching emails' regex are `{n,x}` and `+`.
 
-`{2,6}` in the regex means that the length of the third section (`[a-z\.]`) should be between two and six characters. It can not be greater than or less than that particular range.
+`{2,6}` in the regex means that the length of the third section `([a-z\.]{2,6})` should be between two and six characters. It can not be greater than or less than that particular range.
 
 `+` is used in two different locations in the regex, `([a-z0-9_\.-]+)` and `([\da-z\.-]+)`. This means that, for both sections, there must be a match within the provided ranges one or more times. 
 
 ### Grouping Constructs
+
+Parentheses are used to group constructs into sections also called 'subexpressions'. This allows different parts of the expression to have different requiremnts put on it.
+
+There are three subexpressions in the 'compare matching emails' regex.
+
+`([a-z0-9_\.-]+)` looks for at least one instance of characters that are either between a-z, 0-9, or _. `dog`, `dog123`, and `ilikedogs123_` are all valid combinations.
+
+
+`([\da-z\.-]+)` looks for at least one instance of characters that are between a-z. `yahoo`, `gmail`, and `google` are all valid combinations.
+ 
+`([a-z\.]{2,6})` looks for at least one instance of characters that are between a-z, the number of characters has to be between 2 and 6. `com`, `net` and `eu` are all valid combinations.
 
 ### Bracket Expressions
 
